@@ -1,0 +1,52 @@
+<h1>
+    {{title}}
+</h1>
+<div class="container" style="margin-top:30px" ng-controller="homeController">
+    <div class="row">
+        <div class="col-sm-3">
+            <h5>Photo of me:</h5>
+            <div class="fakeimg">Fake Image</div>
+            <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+
+            <my-modal title="User with id {{user.id}}" footer="title">
+                <p>First name: {{user.first_name}}</p>
+                <p>Last name: {{user.last_name}}</p>
+                <img ng-src="{{user.avatar}}"/>
+                <p>Email: {{user.email}}</p>
+            </my-modal>
+
+        </div>
+        <div class="col-sm-9">
+            <div>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Avatar</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in users | orderBy : 'last_name'">
+                            <th scope="row">{{$index+1}}</th>
+                            <td>{{user.first_name}}</td>
+                            <td>{{user.last_name}}</td>
+                            <td>{{user.email}}</td>
+                            <td ng-click="ToggleImage(user)">
+                                <img ng-src="{{user.avatar}}" height="20" ng-if="user.showImage" />
+                            </td>
+                            <td>
+                                <i class="fas fa-eye" ng-click="GetUser(user.id)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
